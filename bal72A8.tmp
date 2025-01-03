@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://151yvl0eo0wy"]
+
+[ext_resource type="Script" path="res://ball_and_character.gd" id="1_l0txm"]
+[ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_uokno"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecnfw"]
+radius = 19.0
+height = 64.0
+
+[node name="BallAndCharacter" type="Node2D"]
+script = ExtResource("1_l0txm")
+
+[node name="Character" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+position = Vector2(-2.38419e-07, 2.27374e-13)
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("1_uokno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+shape = SubResource("CapsuleShape2D_ecnfw")
+
+[node name="Camera2D" type="Camera2D" parent="Character"]

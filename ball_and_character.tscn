@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://151yvl0eo0wy"]
+
+[ext_resource type="Script" path="res://ball_and_character.gd" id="1_l0txm"]
+[ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_uokno"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecnfw"]
+radius = 19.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6emt3"]
+radius = 32.0
+
+[node name="BallAndCharacter" type="Node2D"]
+script = ExtResource("1_l0txm")
+
+[node name="Character" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1.00084, 1)
+mass = 0.5
+contact_monitor = true
+max_contacts_reported = 100
+linear_damp = 5.0
+angular_damp_mode = 1
+angular_damp = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+position = Vector2(-2.38419e-07, 2.27374e-13)
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("1_uokno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+shape = SubResource("CapsuleShape2D_ecnfw")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(89, 0)
+mass = 3.0
+linear_damp = 10.0
+angular_damp_mode = 1
+angular_damp = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_uokno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_6emt3")
+
+[node name="Camera2D" type="Camera2D" parent="Ball"]
+scale = Vector2(1.00084, 1)
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Ball"]
+position = Vector2(-89, 0)
+node_a = NodePath("../../Character")
+node_b = NodePath("..")
+bias = 0.9
+disable_collision = false
+length = 30.0
+rest_length = 30.0
+stiffness = 64.0
+
+[node name="ReverseRotationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Character" to="." method="_on_ball_body_entered"]
+[connection signal="timeout" from="ReverseRotationTimer" to="." method="_on_timer_timeout"]

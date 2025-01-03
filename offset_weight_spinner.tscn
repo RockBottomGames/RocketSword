@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl24hadripjca"]
+
+[ext_resource type="Script" path="res://offset_weight_spinner.gd" id="1_1g77i"]
+[ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_hn1xw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4u2p"]
+size = Vector2(14, 169)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xt060"]
+radius = 33.0
+
+[node name="OffsetWeightSpinner" type="Node2D"]
+script = ExtResource("1_1g77i")
+
+[node name="Sword" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+mass = 0.05
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -256)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sword"]
+scale = Vector2(0.1, 1)
+texture = ExtResource("1_hn1xw")
+offset = Vector2(0, -64)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sword"]
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("1_hn1xw")
+offset = Vector2(0, -192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(0, -43.5)
+shape = SubResource("RectangleShape2D_t4u2p")
+
+[node name="Camera2D" type="Camera2D" parent="Sword"]
+position = Vector2(0, 32)
+
+[node name="Character" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+mass = 0.1
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_hn1xw")
+offset = Vector2(0, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+position = Vector2(0, 32)
+shape = SubResource("CircleShape2D_xt060")
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+position = Vector2(0, 32)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Character"]
+position = Vector2(0, 5)
+node_a = NodePath("..")
+node_b = NodePath("../../Sword")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Character"]
+position = Vector2(0, 26)
+node_a = NodePath("../../Sword")
+node_b = NodePath("..")
