@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://51bm1u20f2pg"]
 
 [ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_vwq2e"]
-[ext_resource type="PackedScene" uid="uid://bl24hadripjca" path="res://offset_weight_spinner.tscn" id="2_4d0c8"]
+[ext_resource type="PackedScene" uid="uid://c7n4uileuutv6" path="res://Objects/Characters/Player/player.tscn" id="2_tpn3c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x03xw"]
 texture = ExtResource("1_vwq2e")
@@ -97,4 +97,4 @@ texture = ExtResource("1_vwq2e")
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_r0f4l")
 
-[node name="OffsetWeightSpinner" parent="." instance=ExtResource("2_4d0c8")]
+[node name="Player" parent="." instance=ExtResource("2_tpn3c")]

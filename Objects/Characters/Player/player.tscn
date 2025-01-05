@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7n4uileuutv6"]
+
+[ext_resource type="Script" path="res://Objects/Characters/Player/player.gd" id="1_2hvgc"]
+[ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_we8j1"]
+[ext_resource type="PackedScene" uid="uid://yylkkcbvaxhb" path="res://Objects/SpinMeter/spin_meter.tscn" id="4_lfw23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t57x3"]
+radius = 145.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwo7t"]
+radius = 64.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_2hvgc")
+
+[node name="SwingArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="SwingArea"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_we8j1")
+
+[node name="SwingAreaCollision" type="CollisionShape2D" parent="SwingArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_t57x3")
+disabled = true
+
+[node name="SpinMeter" parent="SwingArea" instance=ExtResource("4_lfw23")]
+unique_name_in_owner = true
+position = Vector2(1, -175)
+progress_ratio = 0.615
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_we8j1")
+offset = Vector2(0, 32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kwo7t")

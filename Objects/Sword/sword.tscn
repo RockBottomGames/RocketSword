@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhmd3oi2e6g5m"]
+
+[ext_resource type="Texture2D" uid="uid://bcvptmfc62vhh" path="res://icon.svg" id="1_8c7ns"]
+[ext_resource type="Script" path="res://Objects/Sword/sword.gd" id="1_wqedf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybcfw"]
+size = Vector2(14, 169)
+
+[node name="Sword" type="RigidBody2D"]
+mass = 0.5
+script = ExtResource("1_wqedf")
+
+[node name="SwordSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 117)
+scale = Vector2(0.1, 1)
+texture = ExtResource("1_8c7ns")
+offset = Vector2(0, -64)
+
+[node name="SheethSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 117)
+scale = Vector2(0.5, 0.1)
+texture = ExtResource("1_8c7ns")
+offset = Vector2(0, -192)
+
+[node name="SwordCollision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 73.5)
+shape = SubResource("RectangleShape2D_ybcfw")
+
+[node name="InstantCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
